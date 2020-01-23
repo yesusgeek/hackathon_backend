@@ -7,6 +7,7 @@ import com.ascential.injesuswetrust.demo.service.TranslatorService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -43,8 +47,8 @@ public class SearchController {
     @GetMapping("country/list")
     public ResponseEntity<Map<String, Integer>> getCountries(@Param("global_customer_id") Integer globalCustomerId,
                                                              @Param("report_date") LocalDate reportDate) {
-        Map<String, Integer> result = searchService.getCountryCodes(globalCustomerId, reportDate);
-        return ResponseEntity.ok(result);
+        //Map<String, Integer> result = searchService.getCountryCodes(globalCustomerId, reportDate);
+        return ResponseEntity.ok(null);
     }
 
     @ApiOperation(value = "Get a list of original and translated search terms with their related score", nickname = "getTranslatedSearchTerms")
@@ -59,10 +63,10 @@ public class SearchController {
     @GetMapping("translator")
     @CrossOrigin
     public ResponseEntity<List<SearchTermResult>> getSearchTerms(@RequestParam("global_customer_id") Integer globalCustomerId,
-                                                                 @RequestParam("report_date") String reportDate, @RequestParam("country_code") String countryCode) {
-        //List<SearchTermResult> result = searchService.getSearchTermResults(globalCustomerId, reportDate, countryCode);
+                                                                 @RequestParam("country_code") String countryCode) {
 
-        return ResponseEntity.ok(translatorService.getTranslations(Arrays.asList("Hola", "adios"), "EN", Arrays.asList(100, 50)));
+
+        return ResponseEntity.ok(searchService.getSearchTermResults(globalCustomerId, null, countryCode));
 
         //return ResponseEntity.ok(result);
     }

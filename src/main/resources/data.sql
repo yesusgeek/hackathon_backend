@@ -998,3 +998,4 @@ insert into search_terms (id, country, customer_id, search_term, score, report_d
 insert into search_terms (id, country, customer_id, search_term, score, report_date) values (998, 'CN', 1, 'Cabbage - Green', 4, '2019-04-29');
 insert into search_terms (id, country, customer_id, search_term, score, report_date) values (999, 'FR', 1, 'Pork - Hock And Feet Attached', 32, '2019-01-09');
 insert into search_terms (id, country, customer_id, search_term, score, report_date) values (1000, 'CN', 1, 'Beans - Soya Bean', 41, '2019-12-04');
+commit;

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -17,27 +18,20 @@ public class SearchServiceImpl implements SearchService {
     @Autowired
     private SearchTermDao searchTermResultDao;
 
-    public Map<String, Integer> getCountryCodes(Integer globalCustomerId, LocalDate date) {
+    @Autowired
+    private TranslatorService translatorService;
+
+    public Map<String, Integer> getCountryCodes(Integer globalCustomerId, Date date) {
 
         return null;
     }
 
     @Override
-    public List<SearchTermResult> getSearchTermResults(Integer globalCustomerId, LocalDate date, String countryCode) {
-        List<SearchTerm> searchTerms = searchTermResultDao.getSearchTermsByCustomerIdAndReportDate(globalCustomerId);
-       
-        //TODO: translate terms
-        List<SearchTermResult> results =  new ArrayList<>();
-        
-        for(SearchTerm search : searchTerms){
-            SearchTermResult result = new SearchTermResult();
-            result.setScore(search.getScore());
-            result.setSource(search.getSearchTerm());
-            result.setReportDate(search.getReportDate());
-            
-            results.add(result);
-        }
-        
+    public List<SearchTermResult> getSearchTermResults(Integer globalCustomerId, Date date, String countryCode) {
+        List<SearchTerm> searchTerms = searchTermResultDao.getSearchTermsByCustomerIdAndReportDate(countryCode);
+
+        List<SearchTermResult> results =  translatorService.getTranslations(searchTerms, "ES");
+
         return results;
     }
 }

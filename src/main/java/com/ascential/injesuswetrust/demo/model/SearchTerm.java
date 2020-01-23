@@ -2,7 +2,6 @@ package com.ascential.injesuswetrust.demo.model;
 
 import lombok.Data;
 
-@Data
 public class SearchTerm {
     
     private int id;

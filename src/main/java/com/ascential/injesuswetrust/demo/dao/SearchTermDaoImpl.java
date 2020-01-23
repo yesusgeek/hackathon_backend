@@ -25,12 +25,12 @@ public class SearchTermDaoImpl implements SearchTermDao {
 
     private String SEARCH_TERMS_CUSTOMER_ID = "select id, country, " +
             "customer_id,search_term,score,report_date " +
-            "from search_terms where customer_id = :customer_id";
+            "from search_terms where country = :country LIMIT 100";
 
     @Override
-    public List<SearchTerm> getSearchTermsByCustomerIdAndReportDate(int customerId) {
+    public List<SearchTerm> getSearchTermsByCustomerIdAndReportDate(String country) {
         MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("customer_id", customerId);
+        params.addValue("country", country);
 
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
         List<SearchTerm> terms = new ArrayList<SearchTerm>();

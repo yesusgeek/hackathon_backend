@@ -26,7 +26,6 @@ dependencies {
 	compileOnly('org.projectlombok:lombok')
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
 	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
-	compileOnly('org.projectlombok:lombok')
 	compile group: 'com.google.cloud', name: 'google-cloud-translate', version: '1.94.1'
 	runtime 'com.h2database:h2'
 

@@ -9,5 +9,5 @@ import java.util.List;
 public interface SearchTermDao {
 
 
-    List<SearchTerm> getSearchTermsByCustomerIdAndReportDate(@Param("customer_id") int customerId);
+    List<SearchTerm> getSearchTermsByCustomerIdAndReportDate(@Param("country") String country);
 }
