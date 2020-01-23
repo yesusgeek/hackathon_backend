@@ -22,11 +22,6 @@ public class SearchTermDaoImpl implements SearchTermDao {
             "from search_terms where customer_id = :customer_id";
 
     @Override
-    public List<SearchTerm> getSearchTermsByCustomerId(int customerId) {
-        return jdbcTemplate.queryForList(SEARCH_TERMS_CUSTOMER_ID, SearchTerm.class);
-    }
-
-    @Override
     public List<SearchTerm> getSearchTermsByCustomerIdAndReportDate(int customerId, String reportDate) {
         return jdbcTemplate.queryForList(SEARCH_TERMS_CUSTOMER_ID, SearchTerm.class);
     }
