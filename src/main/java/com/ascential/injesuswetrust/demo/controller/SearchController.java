@@ -9,14 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-@RestController("/api/search")
+@RestController
+@RequestMapping("/api/search")
 public class SearchController {
+
+    @Autowired
+    private TranslatorService translatorService;
 
     @Autowired
     private SearchService searchService;
@@ -47,6 +54,11 @@ public class SearchController {
             @ApiResponse(code = 500, message = "Failure"),
             @ApiResponse(code = 400, message = "Bad Request")})
     @GetMapping("translator")
+    public ResponseEntity<List<SearchTermResult>> getSearchTerms(@RequestParam("global_customer_id") Integer globalCustomerId,
+                                                     @RequestParam("report_date") String reportDate, @RequestParam("country_code") String countryCode) {
+
+        return ResponseEntity.ok(translatorService.getTranslations(Arrays.asList("Hola", "adios"), "EN"));
+
     public ResponseEntity<List<SearchTermResult>> getSearchTerms(@Param("global_customer_id") Integer globalCustomerId,
                                                                  @Param("report_date") LocalDate reportDate, @Param("country_code") String countryCode) {
         List<SearchTermResult> result = searchService.getSearchTermResults(globalCustomerId, reportDate, countryCode);
