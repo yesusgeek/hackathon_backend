@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SearchServiceImpl implements SearchService {
@@ -15,12 +16,12 @@ public class SearchServiceImpl implements SearchService {
     private SearchTermResultDao searchTermResultDao;
 
     @Override
-    public List<String> getCountryCodes(Integer globalCustomerId, LocalDate date) {
+    public Map<String, Integer> getCountryCodes(Integer globalCustomerId, LocalDate date) {
         return searchTermResultDao.getCountryCodes(globalCustomerId, date);
     }
 
     @Override
     public List<SearchTermResult> getSearchTermResults(Integer globalCustomerId, LocalDate date, String countryCode) {
-        return null;
+        return searchTermResultDao.getSearchTermResults(globalCustomerId, date, countryCode);
     }
 }
