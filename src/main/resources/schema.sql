@@ -1,12 +1,6 @@
 DROP TABLE IF EXISTS search_terms;
  
- 
-CREATE TABLE countries (
-  id INTEGER AUTO_INCREMENT  PRIMARY KEY,
-  country VARCHAR(250) NOT NULL,
-  customer_id INTEGER NOT NULL
-);
- 
+
 CREATE TABLE search_terms (
   id INTEGER AUTO_INCREMENT  PRIMARY KEY,
   country VARCHAR(250) NOT NULL,
