@@ -24,8 +24,20 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public List<SearchTermResult> getSearchTermResults(Integer globalCustomerId, LocalDate date, String countryCode) {
-        List<SearchTerm> searchTerms = searchTermResultDao.getSearchTermsByCustomerIdAndReportDate(globalCustomerId, date.toString());
+        List<SearchTerm> searchTerms = searchTermResultDao.getSearchTermsByCustomerIdAndReportDate(globalCustomerId);
+       
         //TODO: translate terms
-        return new ArrayList<SearchTermResult>();
+        List<SearchTermResult> results =  new ArrayList<>();
+        
+        for(SearchTerm search : searchTerms){
+            SearchTermResult result = new SearchTermResult();
+            result.setScore(search.getScore());
+            result.setSource(search.getSearchTerm());
+            result.setReportDate(search.getReportDate());
+            
+            results.add(result);
+        }
+        
+        return results;
     }
 }

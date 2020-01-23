@@ -13,6 +13,8 @@ public class SearchTermResult {
     private String target;
     private int score;
 
+    private String reportDate;
+
     public String getSource() {
         return source;
     }
@@ -35,5 +37,13 @@ public class SearchTermResult {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public String getReportDate() {
+        return reportDate;
+    }
+
+    public void setReportDate(String reportDate) {
+        this.reportDate = reportDate;
     }
 }
