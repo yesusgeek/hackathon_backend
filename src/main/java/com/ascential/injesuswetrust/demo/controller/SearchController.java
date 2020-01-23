@@ -8,15 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @RestController("/api/search")
 public class SearchController {
 
     @GetMapping("country/list")
-    public ResponseEntity<List<String>> getCountries(@Param("global_customer_id") Integer globalCustomerId,
-        @Param("report_date") LocalDate reportDate) {
-
-
+    public ResponseEntity<Map<String, Integer>> getCountries(@Param("global_customer_id") Integer globalCustomerId,
+                                                             @Param("report_date") LocalDate reportDate) {
 
         return ResponseEntity.ok(null);
 
