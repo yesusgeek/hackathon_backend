@@ -1,6 +1,6 @@
 package com.ascential.injesuswetrust.demo.service;
 
-import com.ascential.injesuswetrust.demo.dao.SearchTermResultDao;
+import com.ascential.injesuswetrust.demo.dao.SearchTermDao;
 import com.ascential.injesuswetrust.demo.model.SearchTermResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import java.util.List;
 public class SearchServiceImpl implements SearchService {
 
     @Autowired
-    private SearchTermResultDao searchTermResultDao;
+    private SearchTermDao searchTermResultDao;
 
     @Override
     public List<String> getCountryCodes(Integer globalCustomerId, LocalDate date) {
